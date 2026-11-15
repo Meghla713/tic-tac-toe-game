@@ -3,35 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Tic Tac Toe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
- 
-  <div class="msg-container hide">
-    <p id="msg"> Winner </p>.
-  </div>
-  <button id="new-btn">New Game</button>
+  <div class="app">
+    <header class="top">
+      <div>
+        <h1>Tic Tac Toe</h1>
+        <p class="sub">Get three in a row before your opponent does.</p>
+      </div>
+      <div class="modes" role="group" aria-label="Game mode">
+        <button class="mode active" data-mode="pvp">2 players</button>
+        <button class="mode" data-mode="cpu">Vs computer</button>
+      </div>
+    </header>
 
-  
-  <main>
-  <h1> tic tac toe </h1>
-  <div class="container">     
-  <div class="game">
-    <button class="box"> </button>
-    <button class="box"> </button>
-    <button class="box"> </button>
-    <button class="box"> </button>
-    <button class="box"> </button>
-    <button class="box"> </button>
-    <button class="box"> </button>
-    <button class="box"> </button>
-    <button class="box"> </button>
-    
+    <main class="layout">
+      <section class="card board-card" aria-label="Game board">
+        <div class="turn" aria-live="polite">
+          <span class="turn-pill" id="turnPill"></span>
+          <span class="turn-opt" data-p="X">Player X</span>
+          <span class="turn-opt" data-p="O" id="oName">Player O</span>
+        </div>
+
+        <div class="board-wrap">
+          <div class="game" id="game">
+            <button class="box" aria-label="Cell 1"></button>
+            <button class="box" aria-label="Cell 2"></button>
+            <button class="box" aria-label="Cell 3"></button>
+            <button class="box" aria-label="Cell 4"></button>
+            <button class="box" aria-label="Cell 5"></button>
+            <button class="box" aria-label="Cell 6"></button>
+            <button class="box" aria-label="Cell 7"></button>
+            <button class="box" aria-label="Cell 8"></button>
+            <button class="box" aria-label="Cell 9"></button>
+          </div>
+          <svg class="win-line" viewBox="0 0 3 3" aria-hidden="true">
+            <line id="winLine" x1="0" y1="0" x2="0" y2="0" pathLength="1"/>
+          </svg>
+        </div>
+
+        <div class="actions">
+          <button class="btn ghost" id="undoBtn">Undo move</button>
+          <button class="btn" id="resetGame">Reset game</button>
+        </div>
+      </section>
+
+      <aside class="side">
+        <section class="card">
+          <h2>Scoreboard</h2>
+          <div class="scores">
+            <div class="score x"><span class="label">Player X</span><strong id="scoreX">0</strong></div>
+            <div class="score d"><span class="label">Draws</span><strong id="scoreD">0</strong></div>
+            <div class="score o"><span class="label" id="oLabel">Player O</span><strong id="scoreO">0</strong></div>
+          </div>
+          <button class="link" id="resetScores">Clear scores</button>
+        </section>
+
+        <section class="card">
+          <h2>This round</h2>
+          <dl class="stats">
+            <div><dt>Moves</dt><dd id="moves">0</dd></div>
+            <div><dt>Time</dt><dd id="timer">0:00</dd></div>
+            <div><dt>Rounds</dt><dd id="rounds">0</dd></div>
+            <div><dt>Streak</dt><dd id="streak">-</dd></div>
+          </dl>
+        </section>
+
+        <section class="card">
+          <h2>Move history</h2>
+          <ol class="history" id="history"><li class="empty">No moves yet. Pick a cell to start.</li></ol>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <div class="msg-container hide" id="msgBox" role="dialog" aria-modal="true" aria-labelledby="msg">
+    <div class="modal">
+      <div class="badge" id="badge"></div>
+      <p id="msg">Winner</p>
+      <p class="detail" id="detail"></p>
+      <button class="btn" id="new-btn">Play again</button>
     </div>
-    </div>
-  <button id=resetGame> Reset game </button>
-  </main>
-  <script src="script.js"> </script>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
